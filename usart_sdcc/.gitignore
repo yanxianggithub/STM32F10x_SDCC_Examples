@@ -1,0 +1,14 @@
+# project out
+/.eide
+/.vscode
+/hal
+/lib
+/build
+/bin
+/obj
+/out
+
+# eide template
+*.ept
+*.eide-template
+*.s
