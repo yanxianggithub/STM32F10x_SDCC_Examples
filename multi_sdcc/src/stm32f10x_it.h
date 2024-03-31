@@ -23,6 +23,9 @@
 #ifndef __STM32F10x_IT_H
 #define __STM32F10x_IT_H
 
+#ifdef __cplusplus
+ extern "C" {
+#endif 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f10x.h"
 
@@ -41,6 +44,9 @@ void DebugMon_Handler(void);
 void PendSV_Handler(void);
 void SysTick_Handler(void);
 
+#ifdef __cplusplus
+}
+#endif
 #endif /* __STM32F10x_IT_H */
 
 /******************* (C) COPYRIGHT 2011 STMicroelectronics *****END OF FILE****/

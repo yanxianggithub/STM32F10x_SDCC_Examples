@@ -23,7 +23,9 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f10x_it.h"
-
+#include "led.h"
+#include "usart.h"
+#include "exti.h"
 /** @addtogroup STM32F10x_StdPeriph_Examples
   * @{
   */
@@ -138,6 +140,29 @@ void PendSV_Handler(void)
   */
 void SysTick_Handler(void)
 {
+}
+
+// 串口中断服务函数
+void DEBUG_USART_IRQHandler(void)
+{
+  uint8_t ucTemp;
+	if(USART_GetITStatus(DEBUG_USARTx,USART_IT_RXNE)!=RESET)
+	{		
+		ucTemp = USART_ReceiveData(DEBUG_USARTx);
+    USART_SendData(DEBUG_USARTx,ucTemp);    
+	}	 
+}
+
+void KEY1_IRQHandler(void)
+{
+  //确保是否产生了EXTI Line中断
+	if(EXTI_GetITStatus(KEY1_INT_EXTI_LINE) != RESET) 
+	{
+		// LED1 取反		
+		LED1_TOGGLE;
+    //清除中断标志位
+		EXTI_ClearITPendingBit(KEY1_INT_EXTI_LINE);     
+	}  
 }
 
 /******************************************************************************/
