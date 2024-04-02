@@ -31,7 +31,7 @@ static void NVIC_Configuration(void)
   /* 使能中断通道 */
   NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
   NVIC_Init(&NVIC_InitStructure);
-
+  
 }
 
  /**
@@ -49,6 +49,7 @@ void EXTI_Key_Config(void)
 												
 	/* 配置 NVIC 中断*/
 	NVIC_Configuration();
+	
 /*--------------------------KEY1配置-----------------------------*/
 	/* 选择按键用到的GPIO */	
   GPIO_InitStructure.GPIO_Pin = KEY1_INT_GPIO_PIN;

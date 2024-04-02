@@ -26,6 +26,7 @@
 #include "led.h"
 #include "usart.h"
 #include "exti.h"
+#include "systick.h"
 /** @addtogroup STM32F10x_StdPeriph_Examples
   * @{
   */
@@ -140,6 +141,7 @@ void PendSV_Handler(void)
   */
 void SysTick_Handler(void)
 {
+  TimingDelay_Decrement();//获取节拍程序
 }
 
 // 串口中断服务函数

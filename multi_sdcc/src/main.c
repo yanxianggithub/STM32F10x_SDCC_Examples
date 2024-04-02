@@ -10,21 +10,26 @@
 */
 
 #include "stm32f10x.h"
-#include "delay.h"
+#include "systick.h"
 #include "led.h"
+#include "oled.h"
 #include "exti.h"
 #include "usart.h"
 
 int main()
 {
-    /*初始化USART 配置模式为 115200 8-N-1，中断接收*/
-    USART_Config();
-    LED_GPIO_Config();
-    EXTI_Key_Config();
-
-    while (1)
-    {
-        delay(10000);
-        Usart_SendString( DEBUG_USARTx,"这是一个串口中断接收回显实验\n");
-    }
+   unsigned char i;
+    /*初始化LED、串口*/
+	LED_GPIO_Config();
+	//USART_Config();
+	SysTick_Init();   //初始化延迟函数
+	//I2C_Configuration();//配置CPU的硬件I2C
+	//OLED_Init();    //初始化OLED
+	EXTI_Key_Config();
+	//printf("\r\n OLED初始化成功,OLED正在工作！ \r\n");
+	
+	while(1)
+	{
+		;
+	} 
 }
