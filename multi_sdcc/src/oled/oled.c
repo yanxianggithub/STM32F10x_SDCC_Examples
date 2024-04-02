@@ -29,6 +29,7 @@
 #include "oled.h"
 #include "oledfont.h"
 #include "systick.h"
+#include "led.h"
 
 
  /**
@@ -83,16 +84,14 @@ void I2C_WriteByte(uint8_t addr,uint8_t data)
 	
 	I2C_GenerateSTART(I2C1, ENABLE);//开启I2C1
 	while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT));/*EV5,主模式*/
-
+	
 	I2C_Send7bitAddress(I2C1, OLED_ADDRESS, I2C_Direction_Transmitter);//器件地址 -- 默认0x78
-	while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED));
-
+	while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)); //add by yanxcg,2024-04-02 21:54:36 --> 
+	
 	I2C_SendData(I2C1, addr);//寄存器地址
 	while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_TRANSMITTED));
-
 	I2C_SendData(I2C1, data);//发送数据
 	while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_TRANSMITTED));
-	
 	I2C_GenerateSTOP(I2C1, ENABLE);//关闭I2C1总线
 }
 
@@ -127,7 +126,7 @@ void WriteDat(unsigned char I2C_Data)//写数据
 void OLED_Init(void)
 {
 	Delay_s(1);		// 1s,这里的延时很重要,上电后延时，没有错误的冗余设计
-	
+
 	WriteCmd(0xAE); //display off
 	WriteCmd(0x20);	//Set Memory Addressing Mode	
 	WriteCmd(0x10);	//00,Horizontal Addressing Mode;01,Vertical Addressing Mode;10,Page Addressing Mode (RESET);11,Invalid
