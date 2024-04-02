@@ -46,5 +46,5 @@ int main()
 		OLED_ON();//测试OLED休眠后唤醒
 		OLED_DrawBMP(0,0,128,8,(unsigned char *)BMP1);//测试BMP位图显示
 		Delay_s(2);		// 2*100=200s
-	} 
+	}
 }
