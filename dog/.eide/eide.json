@@ -3,7 +3,6 @@
   "type": "ARM",
   "dependenceList": [],
   "srcDirs": [
-    ".eide/deps",
     "src",
     "hal"
   ],
@@ -35,7 +34,8 @@
         "hal/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c",
         "hal/STM32F10x_StdPeriph_Driver/src/stm32f10x_rtc.c",
         "hal/STM32F10x_StdPeriph_Driver/src/stm32f10x_sdio.c",
-        "hal/STM32F10x_StdPeriph_Driver/src/stm32f10x_wwdg.c"
+        "hal/STM32F10x_StdPeriph_Driver/src/stm32f10x_wwdg.c",
+        "src/sg90"
       ],
       "toolchain": "AC5",
       "compileConfig": {
@@ -99,11 +99,9 @@
       "custom_dep": {
         "name": "default",
         "incList": [
-          ".eide/deps",
           "lib/cmsis"
         ],
         "libList": [],
-        "sourceDirList": [],
         "defineList": [
           "USE_STDPERIPH_DRIVER",
           "STM32F10X_MD"
@@ -111,5 +109,5 @@
       }
     }
   },
-  "version": "3.3"
+  "version": "3.4"
 }
