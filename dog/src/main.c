@@ -1,31 +1,60 @@
 #include "stm32f10x.h"
+//#include "timerbase.h" 
+//#include "advanceTim.h" 
+//#include "generalTim.h" 
 #include "systick.h"
-#include "usart.h"
-#include "key.h"
+//#include "usart.h"
+//#include "key.h"
 #include "led.h"
-#include "oled.h"
-#include "adc.h"
+//#include "oled.h"
+//#include "adc.h"
+#include "internal_flash.h"   
 //add by yanxcg,2024-07-21 13:59:49 --> oled
-extern const unsigned char BMP1[];
-extern const unsigned char BMP2[];
+//extern const unsigned char BMP1[];
+//extern const unsigned char BMP2[];
 //add by yanxcg,2024-07-21 13:59:55 --> adc
-extern __IO uint16_t ADC_ConvertedValue[NOFCHANEL];
+//extern __IO uint16_t ADC_ConvertedValue[NOFCHANEL];
 // 局部变量，用于保存转换计算后的电压值
-float ADC_ConvertedValueLocal[NOFCHANEL];
-
+//float ADC_ConvertedValueLocal[NOFCHANEL];
+//add by yanxcg,2024-07-21 21:51:07 --> timerbase
+//volatile uint32_t time = 0;     // ms 计时变量 
 
 int main()
 {
-    SysTick_Init();
+    //SysTick_Init();
     // Key_GPIO_Config();
     LED_GPIO_Config();
-    USART_Config();
-    I2C_Configuration(); // 配置CPU的硬件I2C
-    OLED_Init();         // 初始化OLED
-    ADCx_Init();
+    //USART_Config();
+    //I2C_Configuration(); // 配置CPU的硬件I2C
+    //OLED_Init();         // 初始化OLED
+    //ADCx_Init();
+    //BASIC_TIM_Init();
+    //ADVANCE_TIM_Init();
+    //GENERAL_TIM_Init();
 
+    if(InternalFlash()== PASSED)
+	{
+		LED_GREEN;
+		printf("读写内部FLASH测试成功\r\n");
+
+	}
+	else
+	{
+		printf("读写内部FLASH测试失败\r\n");
+		LED_RED;
+	}
     while (1) {
 
+
+
+/*
+        if ( time >= 1000 )  //1000 * 1 ms = 1s 时间到 
+        {
+            time = 0;
+            // LED1 取反     
+            LED1_TOGGLE; 
+        } 
+*/  
         /*
         Delay_s(5);
         ADC_ConvertedValueLocal[0] =(float) ADC_ConvertedValue[0]/4096*3.3;

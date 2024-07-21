@@ -23,8 +23,13 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f10x_it.h"
+//#include "timerbase.h" 
+//#include "advanceTim.h" 
+//#include "generalTim.h" 
 #include "systick.h"
 #include "usart.h"
+
+//extern volatile uint32_t time;
 /** @addtogroup STM32F10x_StdPeriph_Examples
   * @{
   */
@@ -168,7 +173,39 @@ void DEBUG_USART_IRQHandler(void)
 /*void PPP_IRQHandler(void)
 {
 }*/
-
+/*
+//add by yanxcg,2024-07-21 22:55:28 --> 基本定时器
+void  BASIC_TIM_IRQHandler (void)
+{
+	if ( TIM_GetITStatus( BASIC_TIM, TIM_IT_Update) != RESET ) 
+	{	
+		time++;
+		TIM_ClearITPendingBit(BASIC_TIM , TIM_FLAG_Update);  		 
+	}		 	
+}
+*/
+//add by yanxcg,2024-07-21 22:55:45 --> 高级定时器
+/*
+void  ADVANCE_TIM_IRQHandler (void)
+{
+	if ( TIM_GetITStatus( ADVANCE_TIM, TIM_IT_Update) != RESET ) 
+	{	
+		time++;
+		TIM_ClearITPendingBit(ADVANCE_TIM , TIM_FLAG_Update);  		 
+	}		 	
+}
+*/
+//add by yanxcg,2024-07-21 23:00:45 --> 通用定时器
+/*
+void  GENERAL_TIM_IRQHandler (void)
+{
+	if ( TIM_GetITStatus( GENERAL_TIM, TIM_IT_Update) != RESET ) 
+	{	
+		time++;
+		TIM_ClearITPendingBit(GENERAL_TIM , TIM_FLAG_Update);  		 
+	}		 	
+}
+*/
 /**
   * @}
   */ 

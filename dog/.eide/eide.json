@@ -33,7 +33,11 @@
         "hal/STM32F10x_StdPeriph_Driver/src/stm32f10x_rtc.c",
         "hal/STM32F10x_StdPeriph_Driver/src/stm32f10x_sdio.c",
         "hal/STM32F10x_StdPeriph_Driver/src/stm32f10x_wwdg.c",
-        "src/sg90"
+        "src/sg90",
+        "src/timer/timerbase.c",
+        "src/timer/advanceTim.c",
+        "src/timer/generalTim.c",
+        "src/timer"
       ],
       "toolchain": "AC5",
       "compileConfig": {
