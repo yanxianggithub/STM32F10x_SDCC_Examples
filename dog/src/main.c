@@ -1,14 +1,3 @@
-/*
- * ************************************************
- *
- * STM32 blink demo
- *
- * CPU:     STM32F103C8
- * PIN:     PA1
- *
- * ************************************************
- */
-
 #include "stm32f10x.h"
 #include "systick.h"
 #include "usart.h"
@@ -16,12 +5,15 @@
 #include "led.h"
 #include "oled.h"
 #include "adc.h"
+//add by yanxcg,2024-07-21 13:59:49 --> oled
 extern const unsigned char BMP1[];
 extern const unsigned char BMP2[];
-
+//add by yanxcg,2024-07-21 13:59:55 --> adc
 extern __IO uint16_t ADC_ConvertedValue[NOFCHANEL];
 // 局部变量，用于保存转换计算后的电压值
 float ADC_ConvertedValueLocal[NOFCHANEL];
+
+
 int main()
 {
     SysTick_Init();
